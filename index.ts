@@ -73,7 +73,7 @@ async function registerSlashCommands() {
             {body: slashCommands}
         )
     } catch(e) {
-        console.error(`There was an error while registering slash commands: ${e}`);
+        console.error(`There was an error while registering slash commands: ${e}`)
     }
 }
 
