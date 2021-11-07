@@ -83,6 +83,7 @@ client.on('ready', async() => {
     await readCommandDir("logging");
     await readCommandDir("management");
     await readCommandDir("training");
+    await readCommandDir("trial");
     await readCommandDir("website");
     await registerSlashCommands();
     await readInteractions();
