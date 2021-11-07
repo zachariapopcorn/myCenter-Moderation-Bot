@@ -1,0 +1,9 @@
+**Welcome to your room, <@$1>!**
+ 
+We're glad to have you here for our training, and congratulations on passing your application!
+This training will be split into three parts:
+- Quiz;
+- Scenarios;
+- Logging.
+ 
+Our first section is the **quiz** section. Please react with a :thumbsup: when ready, and your trainer will purge this channel and give you the link, all the best of luck!

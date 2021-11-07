@@ -1,0 +1,19 @@
+**Quiz section**
+ 
+This section is dedicated to quizzing you, and you can have the handbook open as you do it.
+Your time starts now, you will be timed to complete it. Make sure to read the questions fully.
+ 
+When asked for a code, follow the instructions below:
+- Say "I have completed section <NUM>, here is the code <CODE>"
+Replace <NUM> with the section number, and <CODE> with the code you're prompted with.
+e.g.
+`I have completed section 1, here is the code: 123456`.
+ 
+React with a :thumbsup: once read.
+Once done, ping your trainer to say you are done.
+ 
+:link: **Handbook** - https://bit.ly/mCModHandbook
+:link: **Quiz** - https://forms.gle/uRvgyLNHQhk1NpVN6
+ 
+Thanks,
+{user}.

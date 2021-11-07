@@ -1,0 +1,21 @@
+__**Logging**__
+
+Logging is different in the main server, however, as a trial you are required to manually log everything.
+All the formats are listed in the channels, or in the information channel.
+
+The basic format is:
+```Username:
+Discord ID:
+Moderation type:
+Reason:
+Proof:```
+
+e.g.
+ 
+```Username: AugustPeople#7399
+Discord ID: 578197982961336320
+Moderation Type: Mute & Warn
+Reason: Directed Profanity
+Proof: <insert image>```
+
+React with :thumbsup: to begin(And ping your trainer if they don't respond shortly)
