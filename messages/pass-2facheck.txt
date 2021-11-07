@@ -1,8 +1,8 @@
 <@$1>
-{!announce {channel.id} __**Congratulations!**__
+__**Congratulations!**__
  
 You have passed the training, and are about to become a trial staff member!
 Please provide the following proof before you become a staff member:
 > Read our policy and complete the agreement form.(https://bit.ly/2RwZL4x)
 > 2FA Enabled on your myCenter Account(https://my-center.net/account)
-> 2FA Enabled on your Discord Account(Hide any sensitive information)}
+> 2FA Enabled on your Discord Account(Hide any sensitive information)
