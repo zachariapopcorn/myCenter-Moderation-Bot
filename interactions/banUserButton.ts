@@ -4,7 +4,12 @@ import * as functions from "../utils/functions"
 
 import { pendingApplications } from '../utils/globalVariables';
 
+let ranks = ["Team Member"];
+
 export async function run(interaction : Discord.ButtonInteraction, client : Discord.Client, args : any) {
+    if(!functions.checkPermissions(interaction, this)) {
+        return await interaction.editReply(functions.embedMaker(interaction.user, "No Permission", `You don't have permission to use interaction`));
+    }
     let application = args.app;
     let button = args.button;
     try {
