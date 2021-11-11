@@ -18,8 +18,18 @@ const token = process.env.token;
 export const commands = [];
 export const interactions = [];
 
+import * as globals from './utils/globalVariables'
+
 app.get('/', async (request, response) => {
      response.sendStatus(200);
+});
+
+app.get('/reported-apps', async (request, response) => {
+    response.status(200).send(globals.pendingApplications);
+});
+
+app.get('/subdomains', async (request, response) => {
+    response.status(200).send(globals.pendingSubdomains);
 });
 
 let listener = app.listen(process.env.PORT, () => {
