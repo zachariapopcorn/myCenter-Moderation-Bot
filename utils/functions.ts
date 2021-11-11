@@ -272,10 +272,6 @@ export async function banUser(rbxID: number, reason: string) {
     }
 }
 
-export function fixString(string: string) : string {
-    return string.replace(/\\/g, '');
-}
-
 export async function getSubdomains() {
     let responseData = await request({url: subDomainApi});
     return responseData.subdomains;

@@ -47,7 +47,7 @@ export async function run(interaction : Discord.CommandInteraction, client : Dis
 
     let descriptionIndex = 0;
 
-    let responseObject = JSON.parse(functions.fixString(application.Response));
+    let responseObject = JSON.parse(application.Response);
 
     let response = responseObject.response;
 
