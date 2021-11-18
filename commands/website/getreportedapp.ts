@@ -113,7 +113,7 @@ export async function run(interaction : Discord.CommandInteraction, client : Dis
             await interaction.editReply({content: "Interaction completed"});
             return;
         }
-        let button = Array.from(collectedButtons.values())[0];
+        let button = (Array.from(collectedButtons.values())[0] as Discord.ButtonInteraction);
         await button.deferReply();
         let buttonId = button.customId;
         await interaction.channel.send(functions.embedMaker(interaction.user, "Reason", `Please specify the reason for this action`));
