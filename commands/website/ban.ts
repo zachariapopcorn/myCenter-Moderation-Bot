@@ -26,5 +26,5 @@ export async function run(interaction : Discord.CommandInteraction, client : Dis
 export let data = new Builders.SlashCommandBuilder()
     .setName("ban")
     .setDescription("Bans a user from myCenter")
-    .addStringOption(option => option.setName("username").setDescription("The username of the person that you wish to ban"))
-    .addStringOption(option => option.setName("reason").setDescription("The reason for you to ban this user"));
+    .addStringOption(option => option.setName("username").setDescription("The username of the person that you wish to ban").setRequired(true))
+    .addStringOption(option => option.setName("reason").setDescription("The reason for you to ban this user").setRequired(true));
