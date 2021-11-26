@@ -108,6 +108,7 @@ client.on('interactionCreate', async interaction => {
             let args = functions.getArguements(interaction);
             if(globals.bannedUsers.find(v => v === interaction.user.id)) {
                 await interaction.editReply(functions.embedMaker(interaction.user, "Aww", "Sorry whore, but you're banned from the bot"));
+                return;
             }
             if(!functions.checkPermissions(interaction, commands[i].file)) {
                 await interaction.editReply(functions.embedMaker(interaction.user, "No Permission", `You don't have permission to use this command or this command was ran on a server that's not whitelisted for this command`));
