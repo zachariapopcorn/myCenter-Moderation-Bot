@@ -4,7 +4,7 @@ import * as fs from 'fs/promises'
 
 const axiosClient = axios.default;
 
-const exclusions = ["package.json", "package-lock.json"];
+const exclusions = [];
 
 const API_URL = "https://api.github.com/repos/zachariapopcorn/myCenter-Moderation-Bot/contents";
 
