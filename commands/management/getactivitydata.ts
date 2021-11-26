@@ -13,7 +13,7 @@ export async function run(interaction : Discord.CommandInteraction, client : Dis
         return await interaction.editReply(functions.embedMaker(interaction.user, "Error", `There was an error while trying to get the activity data for this staff member: ${e}`));
     }
     let totalAmountOfLogs = data.discord + data.reportedApps + data.subdomains;
-    return await interaction.editReply(functions.embedMaker(interaction.user, "Activity Data", `This staff member has completed ${totalAmountOfLogs} logs\n\n**Discord**: ${data.discord}\n**Reported Applications**: ${data.reportedApps}\n**Subdomains**: ${data.subdomains}`));
+    return await interaction.editReply(functions.embedMaker(interaction.user, "Activity Data", `This staff member (<@${functions.getArguement("id")}>) has completed ${totalAmountOfLogs} logs\n\n**Discord**: ${data.discord}\n**Reported Applications**: ${data.reportedApps}\n**Subdomains**: ${data.subdomains}`));
 }
 
 export let data = new Builders.SlashCommandBuilder()
