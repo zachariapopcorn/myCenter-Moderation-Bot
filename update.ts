@@ -29,7 +29,7 @@ async function getFiles(folder: string) {
                 throw e;
             }
         } else {
-            let name = files[i].name;
+            let name = files[i].path;
             if(!exclusions.find(v => v === name)) {
                 try {
                     console.log(`Writing file ${files[i].path}`);
