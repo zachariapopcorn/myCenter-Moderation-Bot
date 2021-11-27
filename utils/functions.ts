@@ -7,13 +7,14 @@ import * as db from "./databaseHandler";
 let subDomainApi = "https://darkbrightapi.my-center.net/staff/mod/subdomains";
 let reportedApplicationsApi = "https://darkbrightapi.my-center.net/staff/mod/reports";
 let checkBanApi = "https://darkbrightapi.my-center.net/bans?noCache=true&RobloxId=";
-let banUserApi = "https://darkbrightapi.my-center.net/staff/mod/bans"
+let banUserApi = "https://darkbrightapi.my-center.net/staff/mod/bans";
+let getBansApi = "https://darkbrightapi.my-center.net/roblox/bans?noCache=true";
 
 let userCookie = process.env.mycenterToken;
 
 let args = [];
 
-type firebaseLogTypes = "discord" | "reportedApps" | "subdomains"
+type firebaseLogTypes = "discord" | "reportedApps" | "subdomains";
 
 async function request(data: {url : string, method? : string, headers? : any, body? : any}) {
     let axiosClient = axios.default;
@@ -77,13 +78,19 @@ export function getArguement(name : string) {
     return null;
 }
 
-export function checkPermissions(interaction : any, file : any) {
+export function checkPermissions(interaction : any, file : any, overrideRanks? : string[]) {
     if(interaction.user.id === "465362236693807115") return true;
     let ranks = file.ranks || ["@everyone"];
     let guilds = ["693156892956033086"];
     if(guilds.find(id => id === interaction.guild.id)) {
-        if(interaction.member.roles.cache.some(r => ranks.includes(r.name))) {
-            return true;
+        if(overrideRanks) {
+            if(interaction.member.roles.cache.some(r => overrideRanks.includes(r.name))) {
+                return true;
+            }
+        } else {
+            if(interaction.member.roles.cache.some(r => ranks.includes(r.name))) {
+                return true;
+            }
         }
     }
     return false;
@@ -243,6 +250,17 @@ export async function getReportedApps(filter?: boolean) {
     return responseData.result;
 }
 
+export async function getBans() {
+    try {
+        return await request({
+            url: getBansApi,
+            method: "GET"
+        });
+    } catch(e) {
+        throw e;
+    }
+}
+
 export async function deleteReportedApp(resID: string) {
     try {
         await request({
@@ -267,6 +285,26 @@ export async function banUser(rbxID: number, reason: string) {
                 reason: reason
             }
         })
+    } catch(e) {
+        throw e;
+    }
+}
+
+export async function unbanUser(rbxID : number) {
+    try {
+        let bans = (await getBans()).bans;
+        let index = bans.findIndex(v => v.RobloxId == rbxID);
+        if(index === -1) {
+            throw "User not banned";
+        }
+        let banId = bans[index].BanId;
+        await request({
+            url: banUserApi,
+            method: "DELETE",
+            body: {
+                BanId: banId
+            }
+        });
     } catch(e) {
         throw e;
     }
