@@ -8,8 +8,10 @@ const exclusions = [];
 
 const API_URL = "https://api.github.com/repos/zachariapopcorn/myCenter-Moderation-Bot/contents";
 
+let fileInfo = "";
+
 async function getFiles(folder: string) {
-    console.log(`\nGetting files for ${folder}`);
+    logData(`\nGetting files for ${folder}`);
     let files;
     try {
         let res = await axiosClient({
@@ -32,7 +34,7 @@ async function getFiles(folder: string) {
             let name = files[i].path;
             if(!exclusions.find(v => v === name)) {
                 try {
-                    console.log(`Writing file ${files[i].path}`);
+                    logData(`Writing file ${files[i].path}`);
                     let res = await axiosClient({
                         url: files[i].download_url,
                         method: "GET"
@@ -43,10 +45,15 @@ async function getFiles(folder: string) {
                     throw e;
                 }
             } else {
-                console.log(`Skipped file ${files[i].path}`);
+                logData(`Skipped file ${files[i].path}`);
             }
         }
     }
+}
+
+function logData(data : string) {
+    console.log(data);
+    fileInfo += `${data}\n`;
 }
 
 function isFolder(data: any) {
@@ -57,10 +64,10 @@ function isFolder(data: any) {
     }
 }
 
-
-
-getFiles("/").then(val => {
-    console.log("Successfully updated bot files");
+getFiles("/").then(() => {
+    logData("Successfully updated bot files");
+    fs.writeFile('updateLog.txt', fileInfo).catch();
 }).catch(e => {
-    console.log(`Oops! There was an error while attempting to update the bot files: ${e}`);
+    logData(`Oops! There was an error while attempting to update the bot files: ${e}`);
+    fs.writeFile('updateLog.txt', fileInfo).catch();
 });
