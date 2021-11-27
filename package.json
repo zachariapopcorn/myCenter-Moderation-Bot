@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cls & npx tsc --project ./ & node build/index.js",
-    "update": "cls & npx tsc --project ./ & node build/update.js"
+    "start": "rd build /s /q & cls & npx tsc --project ./ & node build/index.js",
+    "update": "rd build /s /q & cls & npx tsc --project ./ & node build/update.js"
   },
   "keywords": [],
   "author": "zachariapopcorn#8105",
