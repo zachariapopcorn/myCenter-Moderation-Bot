@@ -6,7 +6,7 @@ import * as functions from "../../utils/functions"
 
 import { Arguements } from "../../utils/classes";
 
-export let ranks = ["Team Member"];
+export let ranks = [process.env.teamMemberRole];
 
 export async function run(interaction : Discord.CommandInteraction, client : Discord.Client, args : Arguements[]) {
     let rbxID

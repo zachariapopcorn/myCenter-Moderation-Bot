@@ -8,6 +8,8 @@ import { Arguements } from "../../utils/classes";
 
 import { fixGrammer } from '../../utils/grammarFixer';
 
+export let ranks = [process.env.teamLeaderRole];
+
 export async function run(interaction : Discord.CommandInteraction, client : Discord.Client, args : Arguements[]) {
     let strikes;
     try {

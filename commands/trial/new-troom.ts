@@ -5,7 +5,7 @@ import * as functions from "../../utils/functions"
 
 import { Arguements } from "../../utils/classes";
 
-export let ranks = ["MP"];
+export let ranks = [process.env.trainingRole];
 
 export async function run(interaction : Discord.CommandInteraction, client : Discord.Client, args : Arguements[]) {
     let embed = functions.embedMaker(client.user, "Welcome to your room!", "Here, everything will remain private. We ask that you do not share any images or messages from this chat.");
