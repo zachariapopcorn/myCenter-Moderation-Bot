@@ -364,3 +364,57 @@ export async function denySubdomain(domainName: string) {
         }
     }
 }
+
+export async function blacklistUser(userId: string) {
+    let blacklistedUsers
+    try {
+        blacklistedUsers = await db.get("blacklisted", "users", "IDS");
+    } catch(e) {
+        throw e;
+    }
+    blacklistedUsers.push(userId);
+    try {
+        await db.set("blacklisted", "users", {
+            IDS: blacklistedUsers
+        });
+    } catch(e) {
+        throw e;
+    }
+}
+
+export async function unblacklistUser(userId: string) {
+    let blacklistedUsers
+    try {
+        blacklistedUsers = await db.get("blacklisted", "users", "IDS");
+    } catch(e) {
+        throw e;
+    }
+    let index = blacklistedUsers.findIndex(v => v === userId);
+    if(index === -1) {
+        throw "User not blacklisted";
+    } else {
+        blacklistedUsers.splice(index, 1)
+    }
+    try {
+        await db.set("blacklisted", "users", {
+            IDS: blacklistedUsers
+        });
+    } catch(e) {
+        throw e;
+    }
+}
+
+export async function isBlacklisted(userId : string) {
+    let blacklistedUsers
+    try {
+        blacklistedUsers = await db.get("blacklisted", "users", "IDS");
+    } catch(e) {
+        throw e;
+    }
+    let index = blacklistedUsers.findIndex(v => v === userId);
+    if(index === -1) {
+        return false;
+    } else {
+        return true;
+    }
+}

@@ -92,6 +92,7 @@ client.on('ready', async() => {
     await readCommandDir("general");
     await readCommandDir("logging");
     await readCommandDir("management");
+    await readCommandDir("owner");
     await readCommandDir("training");
     await readCommandDir("trial");
     await readCommandDir("website");
@@ -106,8 +107,8 @@ client.on('interactionCreate', async interaction => {
         if(commands[i].name === command) {
             await interaction.deferReply();
             let args = functions.getArguements(interaction);
-            if(globals.bannedUsers.find(v => v === interaction.user.id)) {
-                await interaction.editReply(functions.embedMaker(interaction.user, "Aww", "Sorry whore, but you're banned from the bot"));
+            if(await functions.isBlacklisted(interaction.user.id)) {
+                await interaction.editReply(functions.embedMaker(interaction.user, "Blacklisted", "Sorry, but you've been blacklisted from the bot, please contact zachariapopcorn#8105 for requesting an unblacklist"));
                 return;
             }
             if(!functions.checkPermissions(interaction, commands[i].file)) {
