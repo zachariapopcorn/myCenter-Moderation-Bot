@@ -5,14 +5,15 @@ import * as functions from "../../utils/functions"
 
 import { Arguements } from "../../utils/classes";
 
-import { fixGrammer } from "../../utils/grammarFixer"
-
 export async function run(interaction : Discord.CommandInteraction, client : Discord.Client, args : Arguements[]) {
     let embedObject = functions.embedMaker(interaction.user, "Moderation Logged", "A new moderation from the myCenter Discord has been logged");
     let embed = embedObject.embeds[0];
     embed.addField("Moderator", `<@${interaction.user.id}> (${interaction.user.id})`);
     for(let i = 0; i < args.length; i++) {
-        embed.addField(await fixGrammer(args[i].name), args[i].value);
+        let name = args[i].name;
+        let firstLetter = args[i].name.charAt(0).toUpperCase();
+        name = name.slice(1, name.length);
+        embed.addField(`${firstLetter + name}`, args[i].value);
     }
     let moderationChannel = interaction.guild.channels.cache.find(channel => channel.id === "693238189489651794") as Discord.TextChannel;
     moderationChannel.send(embedObject);

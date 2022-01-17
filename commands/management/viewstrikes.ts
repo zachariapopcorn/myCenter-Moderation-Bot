@@ -6,8 +6,6 @@ import * as functions from "../../utils/functions"
 
 import { Arguements } from "../../utils/classes"; 
 
-import { fixGrammer } from '../../utils/grammarFixer';
-
 export let ranks = [process.env.teamLeaderRole];
 
 export async function run(interaction : Discord.CommandInteraction, client : Discord.Client, args : Arguements[]) {
@@ -22,7 +20,10 @@ export async function run(interaction : Discord.CommandInteraction, client : Dis
         let keys = Object.keys(strikes[i]);
         let values = Object.values(strikes[i]);
         for(let o = 0; o < keys.length; o++) {
-            description += `**${await fixGrammer(keys[o])}** - ${values[o]}\n`;
+            let key = keys[o];
+            let firstLetter = key.charAt(0).toUpperCase();
+            key = key.slice(1, key.length);
+            description += `**${firstLetter + key}** - ${values[o]}\n`;
         }
         description += "\n";
     }
